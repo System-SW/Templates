@@ -24,30 +24,32 @@
 \RequirePackage{ifthen}
 \RequirePackage{lastpage}
 \RequirePackage{kotex}
+\RequirePackage{array}
+\RequirePackage{colortbl}
+
+\newcolumntype{?}{!{\color{BlueGreen}\vrule width 3pt ~~}}
 
 \hypersetup{
     colorlinks=false,
     hidelinks
 }
 
-
-
 \ifthenelse{\equal{\textest}{xelatex}}%
 {
-%alternative font setup if using xelatex (which also produces a PDF)
+% alternative font setup if using xelatex (which also produces a PDF)
 \RequirePackage{xltxtra}
 \ifthenelse{\equal{\cmrbody}{true}}%
 {}
-{%set main font to be Arial
+{% set main font to be Arial
 \setmainfont[Mapping=tex-text]{Arial}
 }
 }
 {
-%default font setup for use with pdflatex
+% default font setup for use with pdflatex
 \RequirePackage[T1]{fontenc}
 \ifthenelse{\equal{\cmrbody}{true}}%
 {}
-{%set main font to be Helvetica 
+{% set main font to be Helvetica 
 \renewcommand{\rmdefault}{phv}%
 }
 }
@@ -96,12 +98,9 @@
 
 \newcommand{\myinfo}[1]{\renewcommand{\myinfo}{#1}}
 \newcommand{\myinfogroup}{
-	%\hspace{\fill} 
-	%\parbox[t]{0.3\textwidth}{ 
-		\small 
-		\MyName\MyTitle\\[1em] 
-		\textit{\footnotesize \myinfo} 
-	%}
+  \small 
+  \MyName\MyTitle\\[1em] 
+  \textit{\footnotesize \myinfo} 
 }
 
 \myinfo{
@@ -112,11 +111,6 @@
 	\SITE \\[-1em]~% Your URL
 }
 
-
-%\makeatletter
-\newcommand{\vhrulefill}[1]{\leavevmode\leaders\hrule\@height#1\hfill \kern\z@}
-%\makeatother
-
 % first page header and footer 
 \renewcommand{\ps@firstpage}{%
   \setlength{\headsep}{70mm}
@@ -124,19 +118,19 @@
   % 
   \renewcommand{\@oddhead}{%
     \parbox[t]{\textwidth}{%
-    \raisebox{-34mm}{%{\parbox[t]{1.5in}{
+    \raisebox{-34mm}{
     \includegraphics[width=1.5in]{\logo}
-    }%}} 	
+    }% 	
       \raisebox{-30.5mm}{{\hspace*{5mm}\parbox[t]{60mm}{%
              { 	\vskip -0.095\textheight~\\
                 \large\UnivName\hfill\\[-0.004\textheight] 
                 \hspace{0.8\textwidth} \normalsize \textcolor{RoyalBlue}{\rule{11.5cm}{5pt}}}\\[32mm]
-                \hspace*{-4.4cm}\begin{minipage}[c]{5cm}
+                \hspace*{-4.5cm}\begin{minipage}[c]{5cm}
                   \toname \\[0.5em]
                   \toaddress
                 \end{minipage}
           }
-        }}%\hfill
+        }}
       \raisebox{-14.5mm}{\hspace{-3.65cm}\parbox[t]{90mm}{%
         \flushright \textcolor{RoyalBlue}{\myinfogroup}\\[5mm]
         \@date\hspace*{4mm}
@@ -211,11 +205,11 @@
 }
 
 % redefine closing command to sign off with name and postion
-\renewcommand{\closing}[1]{\par\nobreak\vspace{2\parskip}%
+\renewcommand{\closing}[1]{\par\nobreak\vspace{3\parskip}%
   \stopbreaks
   \noindent
-  \parbox{\indentedwidth}{\raggedright
-    \ignorespaces #1\\[9\medskipamount]%
-    \fromsig\\ \fromposition}%
+  \parbox{\textwidth}{\raggedright
+    \ignorespaces #1\\[4\medskipamount]%
+    \hfill\fromsig\\ \hfill\fromposition}%
   \par
 }
