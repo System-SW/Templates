@@ -21,11 +21,8 @@ cp -r ~/.vim_runtime /root/
 ## REQUIREMENT
 
 #### Ubuntu 20.04, Vim
-[Ubuntu official website](https://ubuntu.com/)<br>
+Ubuntu : [Ubuntu official website](https://ubuntu.com/)<br>
 
-Vim
-```
-sudo apt install vim
-```
+Vim : ```sudo apt install vim```
 ## REFERENCE :
-[vim config](https://github.com/amix/vimrc)
+original github : [vim config](https://github.com/amix/vimrc)
