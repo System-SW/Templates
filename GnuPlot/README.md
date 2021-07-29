@@ -47,4 +47,4 @@ sh ./example.sh
 ```
 Be ware that time to draw the graph increases as the data file size increases. 
 
-![Comparing two CDFs](./GnuPlot/sample_image/CDF_comparison.jpg)
+![Comparing two CDFs](./sample_image/CDF_comparison.jpg)
