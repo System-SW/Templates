@@ -1,0 +1,9 @@
+# ignore latex temporary files
+*.aux
+*.log
+*.out
+*.bbl
+*.bcf
+*syntex.gz
+*.blg
+*.toc

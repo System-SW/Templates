@@ -1,19 +1,4 @@
-# Templates
-Frequently used styles and templates
-
-# TeX 
-## GNU Letter Style A (gnu_letter_A)
-* Logo on the left and address on the right of the header
-* Dept contact on the footer
-
-![letter style A](./TeX/sample_image/gnu_letter_A.jpg)
-
-## GNU Letter Style B (gnu_letter_b)
-* Logo on the left and address on the right of the header
-
-![letter style B](./TeX/sample_image/gnu_letter_B.jpg)
-
-# GnuPlot
+# GnuPlot Templates
 Edit the variables in plot_this.GP file for title, data file, figure name, etc.
 
 ## Bar graph with comparison
@@ -22,7 +7,7 @@ To draw the figure run the following command
 gnuplot plot_this.GP
 ```
 
-![Bar graph](./GnuPlot/sample_image/Bar_comparison.jpg)
+![Bar graph](./sample_image/Bar_comparison.jpg)
 
 
 ## Single line graph
@@ -31,7 +16,7 @@ To draw the figure run the following command
 gnuplot plot_this.GP
 ```
 
-![Single Line graph](./GnuPlot/sample_image/Line_single.jpg)
+![Single Line graph](./sample_image/Line_single.jpg)
 
 
 
@@ -41,7 +26,7 @@ To draw the figure run the following command
 gnuplot plot_this.GP
 ```
 
-![Comparing two lines](./GnuPlot/sample_image/Line_comparison.jpg)
+![Comparing two lines](./sample_image/Line_comparison.jpg)
 
 
 
@@ -51,7 +36,7 @@ To draw the figure run the following command
 gnuplot plot_this.GP
 ```
 
-![CDF with Frequency graph](./GnuPlot/sample_image/CDF_with_Freq.jpg)
+![CDF with Frequency graph](./sample_image/CDF_with_Freq.jpg)
 
 
 
