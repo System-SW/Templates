@@ -11,7 +11,7 @@ cp -r ~/.vim_runtime /root/
 ## USAGE-ENG
 1. Extract .vim_runtime.zip
 2. Save .vimrc file and .vim_runtime directory at home directory ( ~/ )
-3. If you want to use this configuration, follow next steps
+3. If you want to use this configuration with sudo mode, follow next steps
 ```
 sudo su
 cp ~/.vimrc /root/
