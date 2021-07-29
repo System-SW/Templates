@@ -1,0 +1,53 @@
+reset
+# Preamble Settings 
+# set terminal x11 0
+set macro
+unset key
+
+# Title and labels
+set ylabel "Frquency" font "Helvetica, 28"
+set y2label "Cumulative Distribution (\%)" font "Helvetica, 28"
+set xlabel "Lantency (msec)" font "Helvetica, 28"
+set title GRAPHTITLE font "Helvetica, 28"
+
+# Frequency Graph bar graph format
+set boxwidth 0.00001 #relative
+set style fill solid 100 border
+
+# Bin Size setting for Frequency and CDF
+bw=0.000001
+bin(x,width)=width*floor(x/width)
+
+# Temporary graph for Frequency 
+set table "frequency.graph"
+plot DATAFILE using (bin($2,bw)):(1.0) smooth frequency
+unset table
+
+# Frequency axis maximum number check and setting
+!awk '{print $2 "\t" $1 }' frequency.graph | sort -n -r | awk '{print $1 "\t" $1}' | head -n 1 > frequency.y.max
+plot "frequency.y.max" using ($1):($2)
+max_y_freq=GPVAL_DATA_Y_MAX
+
+# Y axis range
+set y2tics scale default
+set y2range [0:110]
+scaley(x)=(x*1.08)
+set yrange [0:scaley(max_y_freq)]
+set ytics nomirror
+
+# X asix range
+plot DATAFILE using 1:2
+max_x=GPVAL_DATA_X_MAX
+scalex(x)=floor(x*0.000001)
+set xrange [-scalex(max_x):]
+
+# Set terminal output for EPS format
+set terminal postscript eps enhanced color "Helvetica" 28 size 7,5
+set output EPSFILE 
+
+# Plot Frequency and CDF
+plot "frequency.graph" using ($1*1000):($2) with boxes axis x1y1, DATAFILE using (bin($2,bw)*1000):(100.0/max_x) smooth cumulative with line linetype 2 lw 9 axis x1y2
+
+# Delete temporary files
+!rm frequency.graph
+!rm frequency.y.max

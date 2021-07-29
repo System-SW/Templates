@@ -1,0 +1,32 @@
+reset
+
+# plot to get the max of y and x axis
+plot DATAFILE using 1:2
+max_x=GPVAL_DATA_X_MAX
+max_y=GPVAL_DATA_Y_MAX*1.1
+
+
+set terminal postscript eps enhanced color "Helvetica" 24 size 7,5
+set output EPSFILE
+
+set style data linespoint
+
+set style line 1 linetype 1 linecolor rgb "red" linewidth 5 pointtype 1 pointsize 0
+set style line 2 linetype 3 linecolor rgb "magenta" linewidth 8 pointtype 2 pointsize 2
+set style line 3 linetype 6 linecolor rgb "dark-goldenrod" linewidth 8 pointtype 6 pointsize 2
+set style line 4 linetype 8 linecolor rgb "blue" linewidth 8 pointtype 4 pointsize 1
+set style line 5 linetype 0 linecolor rgb "black" linewidth 8 pointtype 7 pointsize 1.5
+set style line 6 linetype 5 linecolor rgb "brown" linewidth 8 pointtype 9 pointsize 2.5 
+
+set xrange [0:max_x]
+set yrange [0:max_y]
+
+set xtics nomirror font "Helvetica, 28"
+set ytics nomirror font "Helvetica, 28"
+
+set ylabel YLABEL font "Helvetica, 28"
+set xlabel XLABEL font "Helvetica, 28"
+
+set title GRAPHTITLE font "Helvetica, 28"
+plot DATAFILE using 1:($2) ls 1 title LEGEND
+

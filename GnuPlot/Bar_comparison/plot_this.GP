@@ -1,0 +1,8 @@
+ EPSFILE="all_MZ7TD_rand_synchronous_iops.eps"
+ GRAPHTITLE="Synchronous IO - MZ7TD, 4KB Random"
+ XLABEL="Random Operation"
+ YLABEL="IOPS"
+ DATAFILE="all_MZ7TD_rand_synchronous.txt"
+ NAME1="F2FS"
+ NAME2="Ext4"
+   load "./Bar_comp.template"

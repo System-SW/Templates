@@ -1,0 +1,8 @@
+ EPSFILE="all_MZ7TD_seq_direct_WR_bw.eps"
+ GRAPHTITLE="Direct IO - MZ7TD, Seq. Write"
+ XLABEL="Record Size"
+ YLABEL="Bandwidth (MB/sec)"
+ DATAFILE="all_MZ7TD_seq_direct_WR.txt"
+ NAME1="F2FS"
+ NAME2="Ext4"
+   load "./Line_comp.template"

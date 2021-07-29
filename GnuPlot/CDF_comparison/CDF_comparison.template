@@ -1,0 +1,43 @@
+# _plot_cdf_double.GP Created by Seongjin Lee
+# ESOS Lab. Hanyang University
+# 2013-01-22
+
+# Preamble Settings 
+reset
+set macro
+set datafile missing '-'
+set rmargin 6
+
+# Terminal setting and CDF output file
+set terminal postscript eps enhanced color dashed dashlength 1 linewidth 6 rounded colortext "Helvetica" 35 
+set output EPSFILE
+
+
+# Line styles and patterns 
+set border -1 front linetype -1 linewidth 0.500
+set boxwidth 0.75 absolute
+set style fill pattern 1 border
+set key inside bottom right vertical Right noreverse   enhanced nobox font "Helvetica, 25"  samplen 1.5 # width -5 height 0  # height -10 samplen 0 spacing 1
+
+
+# Tic marks - X axis
+set xtics font "Helvetica, 30" rotate by -30
+set xtics mirror
+set xtics autofreq
+set xrange [0:(MAX_XRANGE)]
+
+# Tic marks - Y axis
+set arrow from 0,95 to (MAX_XRANGE),95 nohead lt 2 lw 0.5
+set ytics mirror
+set ytics scale default
+set yrange [0:110]
+
+# Labels 
+set title GRAPHTITLE font "Helvetica, 35"  offset 0,-0.5,0
+set xlabel XLABEL font "Helvetica, 35" offset 0,0,0
+set ylabel "CDF (\%)" font "Helvetica, 35" offset 1,0,0
+
+# Plot with Key
+plot DATAFILE1 using ($1):($2)  with line linetype 0 lw 2 title KEY1, \
+     DATAFILE2 using ($1):($2)  with line linetype 4 lw 2 title KEY2
+

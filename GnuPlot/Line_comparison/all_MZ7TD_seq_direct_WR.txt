@@ -1,0 +1,6 @@
+#FS	F2FS	Ext4
+1	14.9824	17.6508	MByte/sec	
+2	17.2972	20.2831	MByte/sec	
+3	18.6716	21.8921	MByte/sec	
+4	19.4655	23.0195	MByte/sec	
+5	20.0259	23.1283	MByte/sec	

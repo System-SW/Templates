@@ -1,0 +1,27 @@
+reset
+set macro
+
+set terminal postscript eps enhanced color solid linewidth 2 "Helvetica" 32
+set output EPSFILE  
+
+set style data histogram
+set style histogram cluster gap 1
+set style fill pattern 1 border 0
+set boxwidth 1
+
+set xrange [-0.5:1.5]
+
+set xtics ("Write" 0, " Read" 1)
+
+
+set title GRAPHTITLE font "Helvetica, 32"
+set xlabel XLABEL font "Helvetica, 32"
+set ylabel YLABEL font "Helvetica, 32"
+
+set key outside right top vertical Right noinvert samplen 1.8 spacing 1 width 0 height 0 font "Helvetica,25"
+set rmargin 10
+
+plot DATAFILE using ($2) title NAME1, \
+     '' using ($3) title NAME2
+      
+
