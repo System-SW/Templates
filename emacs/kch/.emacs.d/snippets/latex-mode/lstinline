@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lstinline 
+# key: inl
+# --
+\lstinline{$1}$0

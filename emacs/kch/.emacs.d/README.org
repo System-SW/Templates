@@ -1,0 +1,9 @@
+* Spec
+  - emacs 27.1
+* packages
+  - in package.org
+* Normal Config
+  - in init.el
+
+* How to use
+  use this directory as your .emacs.d path on ~/

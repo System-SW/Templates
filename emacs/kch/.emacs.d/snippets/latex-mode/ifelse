@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: ifelse 
+# key: ife
+# --
+
+\If{${1:condition}}
+\State $0
+\ElseIf{${2:condition}}
+\Else
+\EndIf

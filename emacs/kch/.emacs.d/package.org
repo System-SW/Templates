@@ -1,0 +1,301 @@
+* Try
+  install package temporary on emacs session.
+  you can "try" the packages.
+  #+begin_src emacs-lisp 
+(use-package try
+  :ensure t)
+  #+end_src
+* Evil
+  vim key binding
+  evil has several states.
+  you can define key bindings depend on the state.
+  #+begin_src emacs-lisp
+	(use-package evil
+	  :ensure t
+	  :config
+	  (evil-mode 1)
+	  (define-key evil-motion-state-map (kbd "TAB") nil)
+	  (define-key evil-motion-state-map (kbd "SPC") nil)
+	  (define-key evil-motion-state-map (kbd "<left>") nil)
+	  (define-key evil-motion-state-map (kbd "<right>") nil)
+	  (define-key evil-motion-state-map (kbd "SPC x 2") 'make-frame-command)
+	  (define-key evil-motion-state-map (kbd "SPC x 0") 'delete-frame)
+	  (define-key evil-motion-state-map (kbd "SPC x o") 'next-multiframe-window)
+	  (evil-ex-define-cmd "q" 'kill-current-buffer)
+	  (setq evil-normal-state-cursor '("aquamarine" box))
+	  (setq evil-insert-state-cursor '("chartreuse" box))
+	  (setq evil-visual-state-cursor '("cyan" box))
+	  (setq evil-replace-state-cursor '("orange" box)))
+  #+end_src
+* Magit
+  git interface
+  #+begin_src emacs-lisp
+    (use-package magit
+      :ensure t
+      :config
+      (global-set-key (kbd "C-c g") 'magit-dispatch-popup))
+  #+end_src
+* Yassnippet
+  #+begin_src emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :config
+      (yas-global-mode 1))
+  #+end_src
+* Org Bullets
+  change * into ascii bullet
+  #+begin_src emacs-lisp
+    (use-package org-bullets
+      :ensure t
+      :config
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  #+end_src
+* Iedit
+  #+begin_src emacs-lisp
+    (use-package iedit
+      :ensure t
+      :config
+      (global-set-key (kbd "C-c ;") 'iedit-mode))
+  #+end_src
+
+* Flycheck
+  grammar check
+  #+begin_src emacs-lisp
+    (use-package flycheck
+      :ensure t
+      :init (global-flycheck-mode)
+      (add-hook 'python-mode-hook
+                (lambda ()
+                  (setq flycheck-python-pylint-executable
+                        (shell-command-to-string "which pylint")))))
+  #+end_src
+* Company
+  autocompletion front hand
+  #+begin_src emacs-lisp
+	(use-package company
+	  :ensure t
+	  :config
+	  (global-company-mode))
+  #+end_src
+* LSP
+** lsp-mode
+   #+begin_src emacs-lisp
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024))
+  :ensure t
+  :hook
+  (c-mode . lsp)
+  (c++-mode . lsp)
+  (python-mode . lsp)
+  :commands lsp
+  :config
+  (setq lsp-enable-indentation nil)
+  (setq lsp-completion-provider :capf)
+  (setq lsp-idle-delay 0.500))
+   #+end_src
+** lsp-ui
+   #+begin_src emacs-lisp
+	 (use-package lsp-ui
+	   :ensure t
+	   :commands (lsp-ui-mode lsp-ui-doc-show))
+   #+end_src
+** lsp-ivy
+   #+BEGIN_SRC emacs-lisp
+	 (use-package lsp-ivy
+	   :ensure t)
+   #+END_SRC
+* Conda
+  Conda supports different pyls with anaconda.
+  #+BEGIN_SRC emacs-lisp
+	(use-package conda
+	  :ensure t
+	  :config
+	  (conda-env-initialize-eshell)
+	  (custom-set-variables
+	   '(conda-anaconda-home "/home/madplayer/Programs/anaconda3/"))
+	  (setq conda-env-home-directory
+			(expand-file-name "/home/madplayer/Programs/anaconda3/"))
+	  )
+  #+END_SRC
+
+* Xcscope
+ cscope setting with xcscope package.
+ check github repo get to know how to install this.
+  #+begin_src emacs-lisp
+    (use-package xcscope
+      :ensure t
+      :config
+      (cscope-setup))
+  #+end_src
+* Htmlize
+  capture the buffer or file into html
+  #+begin_src emacs-lisp
+    (use-package htmlize
+      :ensure t)
+  #+end_src
+* Theme
+  #+begin_src emacs-lisp
+    (use-package dracula-theme
+      :ensure t
+      :config
+      (load-theme 'dracula t))
+  #+end_src
+* Ox-reveal (Reveal.js for emacs)
+  reveal.js presentation
+  #+begin_src emacs-lisp
+    (use-package ox-reveal
+      :ensure ox-reveal
+      :config
+      (setq org-reveal-root "file:///home/madplayer/.emacs.d/reveal.js"))
+  #+end_src
+* Emms
+  emacs music player
+  #+begin_src emacs-lisp
+	;;music player
+	(use-package emms
+	  :ensure emms
+	  :init
+	  (require 'emms-setup)
+	  :config
+	  (emms-all)
+	  (emms-default-players)
+	  (setq emms-source-file-default-directory "~/Music")
+	  (require 'emms-player-simple)
+	  (require 'emms-source-file)
+	  (require 'emms-source-playlist)
+	  (setq emms-player-list '(emms-player-vlc))
+	  ;; key bindings
+	  (global-set-key (kbd "C-=") 'emms-volume-mode-plus)
+	  (global-set-key (kbd "C--") 'emms-volume-mode-minus)
+	  (add-hook 'emms-playlist-mode-hook (lambda ()
+										   (local-set-key (kbd "h") 'left-char)
+										   (local-set-key (kbd "l") 'right-char)
+										   (local-set-key (kbd "j") 'next-line)
+										   (local-set-key (kbd "k") 'previous-line)
+										   (local-set-key (kbd "C-d") 'scroll-up)
+										   (local-set-key (kbd "C-b") 'scroll-down))))
+  #+end_src
+  
+* Markdown
+** markdown-mode
+   #+begin_src emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :config
+  (setq markdown-command (shell-command-to-string "which pandoc")))
+   #+end_src
+** markdown-preview-mode
+   #+begin_src emacs-lisp
+(use-package markdown-preview-mode
+  :ensure t)
+   #+end_src
+* Ivy
+  list up your possible choices
+  #+begin_src emacs-lisp
+	;;for command searching
+	(use-package ivy
+	  :ensure t
+	  :config
+	  (ivy-mode t)
+	  (setq ivy-use-virtual-buffers t)
+	  (setq enable-recursive-minibuffers t)
+	  (setq ivy-re-builders-alist
+			'((t . ivy--regex-plus)))
+	  (setq ivy-format-functions-alist
+			'((t . ivy-format-function-arrow)))
+	  (define-key ivy-minibuffer-map (kbd "M-n") 'ivy-next-line)
+	  (define-key ivy-minibuffer-map (kbd "M-p") 'ivy-previous-line))
+  #+end_src
+* Counsel
+  #+BEGIN_SRC emacs-lisp
+	(use-package counsel
+	  :ensure t
+	  :bind
+	  (("C-SPC" . counsel-company)))
+  #+END_SRC
+* Swiper
+  ivy applied searching
+  #+begin_src emacs-lisp
+	(use-package swiper
+	  :ensure t
+	  :bind (("ESC %" . swiper-query-replace)
+			 ("C-s" . swiper)))
+  #+end_src
+* Avy
+  avy char based point shift
+  #+begin_src emacs-lisp
+    (use-package avy
+      :ensure t
+      :bind
+      ("C-k" . avy-goto-char)
+      ("C-:" . avy-goto-char-2))
+  #+end_src
+* Undo-tree
+  run C-x u then you will know
+  #+begin_src emacs-lisp
+;; undo tree
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode))
+  #+end_src
+* Ibuffer
+  #+BEGIN_SRC emacs-lisp
+	(defsubst ibuffer-window ()
+	  (interactive)
+	  (ibuffer t))
+
+	(use-package ibuffer
+	  :ensure t
+	  :bind
+	  (("C-x C-b" . 'ibuffer-window)))
+  #+END_SRC
+* Projectile
+  project manager
+  just run the comment then you will know
+  projectile distinguishes git, maven, ...ect
+  #+BEGIN_SRC emacs-lisp
+	(use-package projectile
+	  :ensure t
+	  :config
+	  (projectile-mode 1)
+	  :bind (("C-c p" . projectile-commander)))
+  #+END_SRC
+* Treemacs
+  project directory tree GUI
+  #+BEGIN_SRC emacs-lisp
+	(use-package treemacs
+	  :ensure t
+	  :config
+	  (setq treemacs-position 'right)
+	  :bind (("C-c t" . treemacs)))
+
+	(use-package treemacs-projectile
+	  :after treemacs
+	  :ensure t)
+
+	(use-package treemacs-evil
+	  :after treemacs
+	  :ensure t)
+
+	(use-package treemacs-magit
+	  :after treemacs
+	  :ensure t)
+  #+END_SRC
+* Eshell
+  #+BEGIN_SRC emacs-lisp
+	(defun eshell/xdg-open (arg)
+	  "ARG is argment for xdg-open."
+	  (async-shell-command (concat "setsid xdg-open "
+								   (shell-quote-argument arg))))
+  #+END_SRC
+* YAML MODE
+  #+BEGIN_SRC emacs-lisp
+	(use-package yaml-mode
+	  :ensure t)
+  #+END_SRC
+
+

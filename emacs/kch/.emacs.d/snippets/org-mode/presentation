@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: presentation
+# key: <pre
+# --
+#+OPTIONS: num:t toc:t author:t date:t email:t
+#+REVEAL_INIT_OPTIONS: slideNumber: true
+#+REVEAL_TRANS: None
+#+REVEAL_THEME: moon
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_TITLE_SLIDE_TEMPLATE: ""
+#+Title: ${1:title}
+#+AUTHOR: ${2:your_name}
+#+Email: ${3:your_email}
+#+DATE: ${4:date}

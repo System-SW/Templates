@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: for loop
+# key: for
+# --
+
+\For{${1:condition}}
+\State $0
+\EndFor

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: image
+# key: <im
+# --
+#+caption: ${1:caption of the image}
+#+ATTR_HTML: :width ${2:}% :height ${3:}%
+[[file:${4:image_path}]]$0
