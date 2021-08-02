@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: function
+# key: fun
+# --
+\Function{${1:name}}{${2:args}}
+\State $0
+\State \Return
+\EndFunction

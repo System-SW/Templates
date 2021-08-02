@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: multi column 
+# key: mcol
+# --
+
+\begin{multicols}{${1:2}}
+$0
+\columnbreak
+\end{multicols}

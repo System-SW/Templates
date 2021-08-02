@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lstinputlisting
+# key: ic
+# --
+\lstinputlisting[firstline=$1, lastline=$2]{$3}$0
