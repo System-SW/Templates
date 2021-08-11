@@ -9,6 +9,10 @@ sudo su
 cp ~/.vimrc /root
 cp -r ~/.vim_runtime /root/
 ```
+넘버링 사용하고 싶을 때
+```
+echo 'set number' >> ~/.vimrc
+```
 
 ## USAGE-ENG
 ```
@@ -20,6 +24,10 @@ If you want to use this configuration with sudo mode, follow next steps
 sudo su
 cp ~/.vimrc /root/
 cp -r ~/.vim_runtime /root/
+```
+If you want to use numbering
+```
+echo 'set number' >> ~/.vimrc
 ```
 
 ## REQUIREMENT
