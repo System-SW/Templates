@@ -6,6 +6,7 @@
   :ensure t)
   #+end_src
 * Evil
+  [[https://github.com/emacs-evil/evil][github - evil]]
   vim key binding
   evil has several states.
   you can define key bindings depend on the state.
@@ -28,7 +29,10 @@
 	  (setq evil-replace-state-cursor '("orange" box)))
   #+end_src
 * Magit
+  [[https://github.com/magit/magit][github - magit]]
   git interface
+  - hit C-x g (see the git state)
+  - hit C-c g (do other git stuff)
   #+begin_src emacs-lisp
     (use-package magit
       :ensure t
@@ -36,6 +40,14 @@
       (global-set-key (kbd "C-c g") 'magit-dispatch-popup))
   #+end_src
 * Yassnippet
+  [[https://github.com/joaotavora/yasnippet][github - yasnippet]]
+  1. type the key
+  2. hit the tab
+  3. complete snippet automatically
+     
+
+  - run command yas-new-snippet to add new snippet
+  - run yas-describe-tables to list up possible snippets depends on major-mode
   #+begin_src emacs-lisp
     (use-package yasnippet
       :ensure t
@@ -51,6 +63,15 @@
       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
   #+end_src
 * Iedit
+  [[https://github.com/victorhge/iedit][github - iedit]]
+  Modify same simbols concurrently
+  Locate point on the simbol and hit C-c ;
+  After revise then hit C-c ; again
+  You can combine Iedit with "emacs narrow" and "emacs wider"
+  1. Select visual block
+  2. hit C-x n n (narrow)
+  3. hit C-x n w (wider)
+  Use Iedit inside emacs narrow will effect only narrowed buffer.
   #+begin_src emacs-lisp
     (use-package iedit
       :ensure t
@@ -59,6 +80,7 @@
   #+end_src
 
 * Flycheck
+  [[https://www.flycheck.org/en/latest/][flycheck org]]
   grammar check
   #+begin_src emacs-lisp
     (use-package flycheck
@@ -70,6 +92,7 @@
                         (shell-command-to-string "which pylint")))))
   #+end_src
 * Company
+  [[https://github.com/company-mode/company-mode][github - company mode]]
   autocompletion front hand
   #+begin_src emacs-lisp
 	(use-package company
@@ -78,6 +101,19 @@
 	  (global-company-mode))
   #+end_src
 * LSP
+  [[https://emacs-lsp.github.io/lsp-mode/][lsp-mode github.io]]
+  Language Server Protocol
+  language server can understand your code and show up some recommendations.
+  - list up autocomplete candidates (with company mode)
+  - error check with flycheck
+  - xref (behave like ctag)
+
+ before use lsp, visit official web site.
+ 
+ If you want to use lsp with C/C++ project has complecated directory architecture,
+ I strongly recommend "bear"
+ [[https://github.com/rizsotto/Bear][github - bear]]
+
 ** lsp-mode
    #+begin_src emacs-lisp
 (use-package lsp-mode
@@ -108,6 +144,7 @@
 	   :ensure t)
    #+END_SRC
 * Conda
+  [[https://github.com/necaris/conda.el][github - conda]]
   Conda supports different pyls with anaconda.
   #+BEGIN_SRC emacs-lisp
 	(use-package conda
@@ -124,6 +161,7 @@
 * Xcscope
  cscope setting with xcscope package.
  check github repo get to know how to install this.
+ [[https://github.com/dkogan/xcscope.el][github - xcscope]]
   #+begin_src emacs-lisp
     (use-package xcscope
       :ensure t
@@ -144,7 +182,10 @@
       (load-theme 'dracula t))
   #+end_src
 * Ox-reveal (Reveal.js for emacs)
+  [[https://github.com/hexmode/ox-reveal][github ox-reveal]]
   reveal.js presentation
+  in org buffer, you can use Yassnippet "<pre"
+  if you want offline support, clone reveal.js into your .emacs.d
   #+begin_src emacs-lisp
     (use-package ox-reveal
       :ensure ox-reveal
@@ -152,6 +193,7 @@
       (setq org-reveal-root "file:///home/madplayer/.emacs.d/reveal.js"))
   #+end_src
 * Emms
+  [[https://www.gnu.org/software/emms/][gnu - emms]]
   emacs music player
   #+begin_src emacs-lisp
 	;;music player
@@ -180,6 +222,7 @@
   #+end_src
   
 * Markdown
+  you need usable pandoc and browser
 ** markdown-mode
    #+begin_src emacs-lisp
 (use-package markdown-mode
@@ -193,6 +236,7 @@
   :ensure t)
    #+end_src
 * Ivy
+  [[https://github.com/abo-abo/swiper][github - swiper]]
   list up your possible choices
   #+begin_src emacs-lisp
 	;;for command searching
@@ -210,6 +254,7 @@
 	  (define-key ivy-minibuffer-map (kbd "M-p") 'ivy-previous-line))
   #+end_src
 * Counsel
+  check link for ivy
   #+BEGIN_SRC emacs-lisp
 	(use-package counsel
 	  :ensure t
@@ -217,6 +262,7 @@
 	  (("C-SPC" . counsel-company)))
   #+END_SRC
 * Swiper
+  check link for ivy
   ivy applied searching
   #+begin_src emacs-lisp
 	(use-package swiper
@@ -225,6 +271,7 @@
 			 ("C-s" . swiper)))
   #+end_src
 * Avy
+  [[https://github.com/abo-abo/avy][github - avy]]
   avy char based point shift
   #+begin_src emacs-lisp
     (use-package avy
@@ -243,6 +290,13 @@
   (global-undo-tree-mode))
   #+end_src
 * Ibuffer
+  better buffer manager
+  - hit j to jump to the buffer
+  - n, p change point
+  - m, u mark and unmark buffer 
+  - d mark buffer to kill
+  - x execute kill
+  - t mark al
   #+BEGIN_SRC emacs-lisp
 	(defsubst ibuffer-window ()
 	  (interactive)
@@ -254,8 +308,9 @@
 	  (("C-x C-b" . 'ibuffer-window)))
   #+END_SRC
 * Projectile
+  [[https://github.com/bbatsov/projectile][github - projectile]]
   project manager
-  just run the comment then you will know
+  just run the command then you will know C-c p
   projectile distinguishes git, maven, ...ect
   #+BEGIN_SRC emacs-lisp
 	(use-package projectile
@@ -265,6 +320,7 @@
 	  :bind (("C-c p" . projectile-commander)))
   #+END_SRC
 * Treemacs
+  [[https://github.com/Alexander-Miller/treemacs][github - treemacs]]
   project directory tree GUI
   #+BEGIN_SRC emacs-lisp
 	(use-package treemacs
@@ -286,13 +342,16 @@
 	  :ensure t)
   #+END_SRC
 * Eshell
+  [[https://www.gnu.org/software/emacs/manual/html_mono/eshell.html][gnu - eshell]]
+  eshell can read lisp
   #+BEGIN_SRC emacs-lisp
-	(defun eshell/xdg-open (arg)
-	  "ARG is argment for xdg-open."
-	  (async-shell-command (concat "setsid xdg-open "
-								   (shell-quote-argument arg))))
+    (defun eshell/xdg-open (arg)
+      "ARG is argment for xdg-open."
+      (async-shell-command (concat "setsid xdg-open "
+                                   (shell-quote-argument arg))))
   #+END_SRC
 * YAML MODE
+  [[https://github.com/yoshiki/yaml-mode][github - yaml-mode]]
   #+BEGIN_SRC emacs-lisp
 	(use-package yaml-mode
 	  :ensure t)

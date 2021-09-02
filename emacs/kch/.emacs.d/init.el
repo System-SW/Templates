@@ -40,8 +40,7 @@
 (defun disable-minor-mode (mode major-mod-list)
   "Disable minor MODE when 'major-mode' in MAJOR-MOD-LIST."
   (if (member major-mode major-mod-list)
-      (funcall mode 0)
-    (funcall mode 1)))
+      (funcall mode 0)))
 
 ;;line numbering
 (global-display-line-numbers-mode 1)
@@ -51,7 +50,11 @@
                                                    treemacs-mode
                                                    shell-mode
                                                    gud-mode
+                                                   term-mode
+                                                   tetris-mode
+                                                   snake-mode
                                                    eww-mode
+                                                   magit-mode
                                                    eshell-mode
                                                    doc-view-mode
                                                    latex-mode))))
